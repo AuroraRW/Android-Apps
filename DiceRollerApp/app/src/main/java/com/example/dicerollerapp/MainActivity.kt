@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             DiceRollerAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    DiceWithButtonAndImage(
+                    DiceRoller(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -39,44 +39,37 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
 @Composable
-fun DiceWithButtonAndImage(
-    modifier: Modifier = Modifier
-){
-    // var result = 1 // this will not trigger recompositon, so the screen not update
-
-    // mutableStateOf: like state in React
-    // remember: remember the value of result, when recomposition
+fun DiceRoller(modifier: Modifier = Modifier) {
     var result by remember {mutableStateOf(1)}
-
-    val imageResource = when(result){
-        1-> R.drawable.dice_1
-        2-> R.drawable.dice_2
-        3-> R.drawable.dice_3
-        4-> R.drawable.dice_4
-        5-> R.drawable.dice_5
-        else-> R.drawable.dice_6
+    var imageResource =
+        when(result){
+            1 -> R.drawable.dice_1
+            2 -> R.drawable.dice_2
+            3 -> R.drawable.dice_3
+            4 -> R.drawable.dice_4
+            5 -> R.drawable.dice_5
+            else -> R.drawable.dice_6
     }
     Column(
-        modifier = modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
+        verticalArrangement = Arrangement.Center,
+        modifier = modifier.fillMaxSize()
+
+    ){
         Image(
-            painter = painterResource(id= imageResource),
-            contentDescription = result.toString()
+            painter = painterResource(imageResource),
+            contentDescription = null
         )
-        Button(onClick = {result=(1..6).random()}){
+        Button(onClick = { result=(1..6).random() }){
             Text(text= stringResource(R.string.btn_text))
         }
     }
 }
-
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     DiceRollerAppTheme {
-        DiceWithButtonAndImage()
+        DiceRoller()
     }
 }
