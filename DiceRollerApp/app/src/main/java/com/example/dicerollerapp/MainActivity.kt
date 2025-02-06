@@ -39,9 +39,10 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
 @Composable
 fun DiceRoller(modifier: Modifier = Modifier) {
-    var result by remember {mutableStateOf(1)}
+    var result by remember{ mutableStateOf(1)}
     var imageResource =
         when(result){
             1 -> R.drawable.dice_1
@@ -50,22 +51,22 @@ fun DiceRoller(modifier: Modifier = Modifier) {
             4 -> R.drawable.dice_4
             5 -> R.drawable.dice_5
             else -> R.drawable.dice_6
-    }
+        }
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
         modifier = modifier.fillMaxSize()
-
     ){
         Image(
-            painter = painterResource(imageResource),
-            contentDescription = null
+            painter= painterResource(imageResource),
+            contentDescription = result.toString()
         )
-        Button(onClick = { result=(1..6).random() }){
+        Button(onClick = {result = (1..6).random()}){
             Text(text= stringResource(R.string.btn_text))
         }
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {

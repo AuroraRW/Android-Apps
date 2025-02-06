@@ -1,4 +1,4 @@
-package com.example.tipcaculatorapp.ui.theme
+package com.example.tipcalculatorapp.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
