@@ -4,4 +4,5 @@
 ### 3. Tip Calculator App
 ### 4. Affirmation App
 ### 5. Woof App
-### 6. UnscrambleApp
+### 6. Unscramble App
+### 7. Cupcake App
